@@ -31,26 +31,3 @@ The neural network (`obrazki` class) utilizes a sequential architecture with two
 * **Machine Learning:** PyTorch, Torchvision
 * **GUI Framework:** Tkinter
 * **Image Processing:** Pillow (PIL), NumPy
-
-## Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/mnist-digit-recognizer.git](https://github.com/your-username/mnist-digit-recognizer.git)
-    cd mnist-digit-recognizer
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    pip install torch torchvision pillow numpy
-    ```
-
-3.  **Verify Model:**
-    Ensure that the trained model weights file (`moj_drugi_model.pth`) is located in the root directory. If not, run the training notebook/script first.
-
-## Usage
-
-To start the application, run the main python script (or the corresponding Jupyter Notebook):
-
-```bash
-python application_MNIST.py
