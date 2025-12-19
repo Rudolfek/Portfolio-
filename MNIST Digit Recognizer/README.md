@@ -1,48 +1,56 @@
-MNIST Digit Recognizer
-A desktop application for real-time handwritten digit recognition using a Convolutional Neural Network (CNN) and a GUI based on Tkinter. The system captures user input via a drawing canvas, preprocesses the image to match MNIST dataset specifications, and performs inference using a model trained with PyTorch.
+# MNIST Digit Recognizer
 
-Project Overview
-This project implements an end-to-end deep learning pipeline, including:
+A real-time handwritten digit recognition application built with Python, PyTorch, and Tkinter. The project implements an end-to-end deep learning pipeline, ranging from training a Convolutional Neural Network (CNN) on the MNIST dataset to deploying the model in an interactive GUI.
 
-Model Training: A CNN trained on the MNIST dataset with data augmentation (random rotation, affine transformations) to improve generalization.
+## Project Overview
 
-Inference Engine: Integration of the trained model into a Python application.
+The primary goal of this project is to demonstrate the practical deployment of a computer vision model. It addresses the common "domain shift" problem where models trained on pre-processed datasets fail on raw real-world input.
 
-Preprocessing Logic: An algorithm to center and crop user drawings to resolve domain shift issues between high-resolution canvas input and low-resolution training data (28x28 pixels).
+Key components:
+1.  **Deep Learning Model:** A custom CNN architecture trained to classify digits (0-9).
+2.  **Data Augmentation:** The training process includes random rotations and affine transformations to improve model robustness.
+3.  **Preprocessing Pipeline:** A custom algorithm that detects the bounding box of user input, centers the digit, adds padding, and resizes it to 28x28 pixels to match the MNIST data distribution.
 
-Key Features
-Interactive Interface: Tkinter-based canvas allowing users to draw digits with a mouse.
+## Technical Architecture
 
-Smart Preprocessing: Automatic bounding box detection, cropping, centering, and resizing of the input image to ensure consistent input for the neural network.
+### Model Structure
+The neural network (`obrazki` class) utilizes a sequential architecture with two main blocks:
 
-Convolutional Neural Network: A custom PyTorch architecture achieving approximately 99% accuracy on the test set.
+**1. Feature Extractor (Encoder):**
+* **Layer 1:** Conv2d (1 in, 32 out, kernel=3, padding=1) → BatchNorm → ReLU → MaxPool(2)
+* **Layer 2:** Conv2d (32 in, 64 out, kernel=3, padding=1) → BatchNorm → ReLU → MaxPool(2)
 
-Confidence Scoring: Displays the predicted class and the softmax probability associated with the prediction.
+**2. Classifier:**
+* **Flatten:** Converts 2D feature maps to a 1D vector.
+* **Fully Connected:** Linear (3136 → 512) → ReLU → Dropout(0.5)
+* **Fully Connected:** Linear (512 → 128) → ReLU → Dropout(0.5)
+* **Output Layer:** Linear (128 → 10 classes)
 
-Technical Stack
-Language: Python 3.10+
+### Technologies
+* **Language:** Python 3.10+
+* **Machine Learning:** PyTorch, Torchvision
+* **GUI Framework:** Tkinter
+* **Image Processing:** Pillow (PIL), NumPy
 
-Deep Learning: PyTorch, Torchvision
+## Installation
 
-GUI: Tkinter
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/mnist-digit-recognizer.git](https://github.com/your-username/mnist-digit-recognizer.git)
+    cd mnist-digit-recognizer
+    ```
 
-Image Processing: Pillow (PIL), NumPy
+2.  **Install dependencies:**
+    ```bash
+    pip install torch torchvision pillow numpy
+    ```
 
-Model Architecture
-The model (obrazki class) consists of two main blocks:
+3.  **Verify Model:**
+    Ensure that the trained model weights file (`moj_drugi_model.pth`) is located in the root directory. If not, run the training notebook/script first.
 
-Feature Extractor (Encoder):
+## Usage
 
-Conv2d (1 input channel, 32 output channels, kernel=3, padding=1) -> BatchNorm -> ReLU -> MaxPool(2)
+To start the application, run the main python script (or the corresponding Jupyter Notebook):
 
-Conv2d (32 input channels, 64 output channels, kernel=3, padding=1) -> BatchNorm -> ReLU -> MaxPool(2)
-
-Classifier:
-
-Flatten layer
-
-Linear (3136 -> 512) -> ReLU -> Dropout(0.5)
-
-Linear (512 -> 128) -> ReLU -> Dropout(0.5)
-
-Linear (128 -> 10 output classes)
+```bash
+python application_MNIST.py
