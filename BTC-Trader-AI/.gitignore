@@ -1,0 +1,19 @@
+# Ignoruj pliki tymczasowe Pythona
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignoruj pliki systemowe (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# Opcjonalnie: Ignoruj wirtualne środowisko (jeśli masz)
+venv/
+env/
+.env
+
+# Ignoruj foldery IDE (VS Code, PyCharm)
+.vscode/
+.idea/
+.ipynb_checkpoints/
